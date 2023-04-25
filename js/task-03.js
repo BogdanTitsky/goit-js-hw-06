@@ -13,21 +13,8 @@ const images = [
     },
 ];
 
-const listEl = document.querySelector('.gallery');
+const galleryRef = document.querySelector('.gallery');
+const createGalleryMarkup = (images) =>
+    images.map(({ url, alt }) => `<li class="item"><img class="img-size" src="${url}" alt="${alt}"></li>`).join('');
 
-const makeImgList = ({ url, alt }) => {
-    const itemEl = document.createElement('li');
-    itemEl.classList.add('item');
-    const imgEl = document.createElement('img');
-    imgEl.classList.add('img-size');
-    imgEl.src = url;
-    imgEl.alt = alt;
-
-    itemEl.appendChild(imgEl);
-
-    return itemEl;
-};
-
-const itemsArray = images.map(makeImgList);
-
-listEl.append(...itemsArray);
+galleryRef.insertAdjacentHTML('beforeend', createGalleryMarkup(images));
